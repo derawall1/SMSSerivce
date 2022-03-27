@@ -1,8 +1,10 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 using SMSSerivce.API.Authorization;
 using SMSSerivce.API.Dtos;
+using SMSSerivce.API.Models;
 using SMSService.Data;
 using SMSService.Data.Services;
 using System.Net;
@@ -17,11 +19,13 @@ namespace SMSSerivce.API.Controllers
     {
         private readonly IAccountService _accountRepo;
         private readonly IMemoryCache _memoryCache;
+        private readonly IOptions<AppSetting> _appSettings;
 
-        public OutboundController(IAccountService accountRepo, IMemoryCache memoryCache)
+        public OutboundController(IAccountService accountRepo, IMemoryCache memoryCache, IOptions<AppSetting> appSettings)
         {
             _accountRepo = accountRepo;
             _memoryCache = memoryCache;
+            _appSettings = appSettings;
         }
 
         [HttpPost]
@@ -69,7 +73,7 @@ namespace SMSSerivce.API.Controllers
                     };
                     _memoryCache.Set(from, count, cacheExpirationOptions);
                 }
-                if(count > 5)
+                if(count > _appSettings.Value.SMSLimit)
                 {
                     response.Message = "";
                     response.Error = $"limit reached for from {from}";

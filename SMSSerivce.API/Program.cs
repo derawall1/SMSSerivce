@@ -6,6 +6,7 @@ using SMSService.API.Services;
 using SMSSerivce.API.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SMSSerivce.API.Dtos;
+using SMSSerivce.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,7 @@ var builder = WebApplication.CreateBuilder(args);
                 return new BadRequestObjectResult(errors);
             };
         });
+    services.Configure<AppSetting>(builder.Configuration.GetSection("AppSettings"));
     services.AddMemoryCache();
 
     services.AddDbContext<SMSDataContext>( option => 
