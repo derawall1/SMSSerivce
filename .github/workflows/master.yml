@@ -13,10 +13,10 @@ jobs:
         steps:
         - uses: actions/checkout@v2
         - name: Build and deploy the Docker image
-            env:
+        env:                
             Heroku_API_KEY: ${{secrets.HEROKU_API_KEY}}
             APP_NAME: ${{secrets.HEROKU_APP_NAME}}
             run: |
-            docker login --username=_ --password=$Heroku_API_KEY registry.Heroku.com
-            Heroku container:push web -a $APP_NAME
-            Heroku container:release web -a $APP_NAME
+                docker login --username=_ --password=$Heroku_API_KEY registry.Heroku.com
+                Heroku container:push web -a $APP_NAME
+                Heroku container:release web -a $APP_NAME
