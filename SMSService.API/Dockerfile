@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["SMSService.API/SMSService.API.csproj", "SMSService.API/"]
+COPY ["SMSService.API.csproj", "SMSService.API/"]
 RUN dotnet restore "SMSService.API/SMSService.API.csproj"
 COPY . .
 WORKDIR "/src/SMSService.API"
