@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SMSSerivce.API.Dtos;
 using SMSSerivce.API.Models;
 using SMSService.API.Data;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -79,12 +80,25 @@ else
 
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
+    services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
+    services.Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+                                   ForwardedHeaders.XForwardedProto;
+        options.KnownNetworks.Clear();
+        options.KnownProxies.Clear();
+    });
 }
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 {
-    app.UseHttpsRedirection();
+    app.UseHsts();
+    app.UseForwardedHeaders();
+    if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("DYNO")))
+    {
+        app.UseHttpsRedirection();
+    }
     // global cors policy
     app.UseCors(x => x
         .AllowAnyOrigin()
