@@ -1,7 +1,4 @@
-
-
-using SMSService.Data;
-using SMSService.Data.Services;
+using SMSSerivce.API.Models;
 
 namespace SMSService.API.Services
 {

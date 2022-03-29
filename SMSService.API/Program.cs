@@ -1,5 +1,3 @@
-using SMSService.Data;
-using SMSService.Data.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using SMSService.API.Services;
@@ -7,6 +5,7 @@ using SMSSerivce.API.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SMSSerivce.API.Dtos;
 using SMSSerivce.API.Models;
+using SMSService.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

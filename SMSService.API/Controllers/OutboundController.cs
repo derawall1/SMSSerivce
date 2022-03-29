@@ -5,10 +5,7 @@ using Microsoft.Extensions.Options;
 using SMSSerivce.API.Authorization;
 using SMSSerivce.API.Dtos;
 using SMSSerivce.API.Models;
-using SMSService.Data;
-using SMSService.Data.Services;
-using System.Net;
-using System.Text.RegularExpressions;
+using SMSService.API.Services;
 
 namespace SMSSerivce.API.Controllers
 {

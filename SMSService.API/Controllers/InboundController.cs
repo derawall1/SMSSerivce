@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using SMSSerivce.API.Authorization;
 using SMSSerivce.API.Dtos;
-using SMSService.Data;
-using SMSService.Data.Services;
-using System.Net;
-using System.Text.RegularExpressions;
+using SMSSerivce.API.Models;
+using SMSService.API.Services;
 
 namespace SMSSerivce.API.Controllers
 {

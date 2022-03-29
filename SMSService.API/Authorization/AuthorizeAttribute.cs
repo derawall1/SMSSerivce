@@ -1,9 +1,7 @@
-
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using SMSSerivce.API.Dtos;
-using SMSService.Data;
+using SMSSerivce.API.Models;
 
 namespace SMSSerivce.API.Authorization
 {
