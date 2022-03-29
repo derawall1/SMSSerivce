@@ -8,6 +8,7 @@
 		<UserSecretsId>c2a0517e-97a8-4a0a-b6ec-5201f9402eff</UserSecretsId>
 
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		
 	</PropertyGroup>
 
 	<ItemGroup>
