@@ -10,15 +10,8 @@ using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var configurationBuilder = new ConfigurationBuilder()
-                            .SetBasePath(builder.Environment.ContentRootPath)
-                            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                            .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
-                            .AddEnvironmentVariables();
 
-
-builder.Configuration.AddConfiguration(configurationBuilder.Build());
-
+//builder.WebHost.UseKestrel();
 // GETTING CONNECTION STRING
 var defaultConnectionString = string.Empty;
 
@@ -91,14 +84,10 @@ else
 }
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 {
-    app.UseHsts();
-    app.UseForwardedHeaders();
-    if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("DYNO")))
-    {
-        app.UseHttpsRedirection();
-    }
+    
     // global cors policy
     app.UseCors(x => x
         .AllowAnyOrigin()
@@ -119,4 +108,5 @@ var app = builder.Build();
 
     app.MapControllers();
 }
+
 app.Run();
