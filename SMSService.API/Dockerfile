@@ -17,4 +17,4 @@ RUN dotnet publish "SMSService.API.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "SMSService.API.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet SMSService.API.dll
